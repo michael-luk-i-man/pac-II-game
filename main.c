@@ -92,7 +92,10 @@ int main(int argc, char *argv[]) {
 		switch ( mod_width ) {
 
 			case 0: // Cell is on the right edge
-				printf("%s\n","Case 0" );
+
+				// Uncomment to debug case decisions. 
+				// printf("%s\n","Case 0" );
+			
 				if ( cell_id<width-1 ) { // Also on top edge
 					neighbor_sum = sigma_neighbor(left,dead,dead,bottom,dead,dead,bottomleft,dead);
 				}
