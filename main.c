@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
 
 				// Uncomment to debug case decisions. 
 				// printf("%s\n","Case 0" );
-			
+
 				if ( cell_id<width-1 ) { // Also on top edge
 					neighbor_sum = sigma_neighbor(left,dead,dead,bottom,dead,dead,bottomleft,dead);
 				}
@@ -130,11 +130,13 @@ int main(int argc, char *argv[]) {
 	int gen = *argv[1]-48;
 	for ( int loopa_index = 0; loopa_index<gen+1; loopa_index++ ) { 
 
-		printf("\n\n%d\n", loopa_index);
+		// Uncomment to track loop_a iteration.
+		// printf("\n\n%d\n", loopa_index);
 
 		for ( int loopb_index = 0; loopb_index<stream_length; loopb_index++ ) {
 
-			printf("%d : ", loopb_index);
+			// Uncomment to track loop_b iteration.
+			//printf("%d : ", loopb_index);
 			int neighbors = count_neighbors(loopb_index, width,gridstream);
 
 			switch( neighbors ) {
