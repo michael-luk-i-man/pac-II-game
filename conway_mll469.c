@@ -16,6 +16,9 @@ int main(int argc, char *argv[]) {
 
 	if ( argc<3 ) { printf("%s\n", "Here's how to use this program: after running 'gcc conway_mll469.c -o conway_mll469', then run './conway_mll469   NUMBER.OF.GENERATIONS   BASE.FILE' to execute. For example, './conway_mll469 5 conway.txt'. You can also specify a different grid width, four for example './conway_mll469 5 conway.txt 4'. By default, the width is ten."); exit(1);}
 
+	char gen[64];
+	snprintf(gen, sizeof gen, "%s", argv[1]);
+	int gen_num = strtol(gen, NULL, 10);
 	int width = (argc<4)?10:(int)strtol(argv[3], NULL, 10);
 	int stream_length = width*width;
 	int gridstream[stream_length+1];
@@ -187,9 +190,8 @@ int main(int argc, char *argv[]) {
 
 	}
 
-	printf("\n%s%c","Generation numbers: ", *argv[1] );
-	int gen = *argv[1]-48;
-	for ( int loopa_index = 0; loopa_index<gen; loopa_index++ ) { // NOTE: ASSUMING GENERATIONS PLUS AND NOT INCLUDING INITIAL. IF INCLUDING INITIAL, change expression to loopa_index<gen-1.
+	printf("\n%s%d","Generation numbers: ", gen_num );
+	for ( int loopa_index = 0; loopa_index<gen_num; loopa_index++ ) { // NOTE: ASSUMING GENERATIONS PLUS AND NOT INCLUDING INITIAL. IF INCLUDING INITIAL, change expression to loopa_index<gen-1.
 
 		// Uncomment to track loop_a iteration.
 		printf("\n\n");

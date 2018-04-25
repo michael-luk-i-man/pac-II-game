@@ -5,6 +5,7 @@
   Michael Lukiman - mll469 - pacII - Courant Institute of Mathematical Sciences
   */
 
+#define _BSD_SOURCE
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
@@ -16,6 +17,9 @@ int main(int argc, char *argv[]) {
 
 	if ( argc<3 ) { printf("%s\n", "Here's how to use this program: after running 'gcc conway_mll469.c -o conway_mll469', then run './conway_mll469   NUMBER.OF.GENERATIONS   BASE.FILE' to execute. For example, './conway_mll469 5 conway.txt'. You can also specify a different grid width, four for example './conway_mll469 5 conway.txt 4'. By default, the width is ten."); exit(1);}
 
+	char gen[64];
+	snprintf(gen, sizeof gen, "%s", argv[1]);
+	int gen_num = strtol(gen, NULL, 10);
 	int width = (argc<4)?10:(int)strtol(argv[3], NULL, 10);
 	int stream_length = width*width;
 	int gridstream[stream_length+1];
@@ -51,7 +55,7 @@ int main(int argc, char *argv[]) {
 
 		printf("%s\n", "~*~*~*~*~*~*~*~*~*~*~*~*~");
 				
-			if (lindex == *argv[1]-48-1) { printf("LIFE HAPPENED - ML\n"); }
+			if (lindex == gen_num-1) { printf("LIFE HAPPENED - ML\n"); }
 
 			else if (lindex%2==0) {
 				printf("%s\n", "LIFE IS HAPPENING - ML");
@@ -203,9 +207,9 @@ int main(int argc, char *argv[]) {
 	display_array(gridstream,width,-1);
 	usleep(900000);
 
-	// printf("\n%s%c","Generation numbers: ", *argv[1] );
-	int gen = *argv[1]-48;
-	for ( int loopa_index = 0; loopa_index<gen; loopa_index++ ) { // NOTE: ASSUMING GENERATIONS PLUS AND NOT INCLUDING INITIAL. IF INCLUDING INITIAL, change expression to loopa_index<gen-1.
+	printf("\n%s%c","Generation numbers: ", *argv[1] );
+
+	for ( int loopa_index = 0; loopa_index<gen_num; loopa_index++ ) { // NOTE: ASSUMING GENERATIONS PLUS AND NOT INCLUDING INITIAL. IF INCLUDING INITIAL, change expression to loopa_index<gen-1.
 
 		printf("%c[2J%c[;H",(char) 27, (char) 27); 
 		// Uncomment to track loop_a iteration.
@@ -250,7 +254,7 @@ int main(int argc, char *argv[]) {
 
 		display_array(gridstream,width,loopa_index);
 
-		usleep(900000);
+		usleep(700000-(10000*gen_num));
 
 
 	}
