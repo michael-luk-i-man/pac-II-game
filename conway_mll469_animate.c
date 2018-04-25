@@ -1,6 +1,7 @@
 /* A stylized implementation
 * of
   Game of Life 
+  ANIMATED
 
   Michael Lukiman - mll469 - pacII - Courant Institute of Mathematical Sciences
   */
